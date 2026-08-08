@@ -13,4 +13,9 @@ public class FiatFactory implements MontadoraFactory {
     public Hatch criarHatch() {
         return new FiatArgo();
     }
+
+    @Override
+    public SUV criarSUV(){
+        return new FiatPulse();
+    }
 }

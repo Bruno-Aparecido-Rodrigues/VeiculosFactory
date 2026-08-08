@@ -13,4 +13,9 @@ public class VolksFactory implements MontadoraFactory {
     public Hatch criarHatch() {
         return new VolksPolo();
     }
+
+    @Override
+    public SUV criarSUV(){
+        return new TCross();  
+    }
 }

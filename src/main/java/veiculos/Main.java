@@ -17,6 +17,16 @@ import java.nio.charset.StandardCharsets;
  * FiatFactory e VolksFactory; os botões "Criar Sedan" e "Criar Hatch"
  * usam a interface MontadoraFactory para obter os produtos da família
  * selecionada, sem depender das classes concretas.
+ * 
+ * * Parte 3 - Extensão da família (SUV): o mercado passou a exigir um novo
+ * tipo de produto SUV para todas as montadoras. Isso exigiu alterar o
+ * contrato MontadoraFactory (novo método criarSUV()) e
+ * atualizar FiatFactory e VolksFactory para implementá-lo, evidenciando
+ * a limitação do Abstract Factory ao crescer o eixo "tipo de produto"
+ * (viola o Princípio Aberto/Fechado). O botão "Criar SUV" segue o mesmo
+ * fluxo de Sedan/Hatch, obtém a fábrica da montadora selecionada e pede
+ * a ela o produto, sem o Main conhecer FiatPulse/TCross diretamente.
+ * 
  */
 public class Main extends JFrame {
 
@@ -60,14 +70,17 @@ public class Main extends JFrame {
 
         JButton btnSedan = new JButton("Criar Sedan");
         JButton btnHatch = new JButton("Criar Hatch");
+        JButton btnSUV = new JButton("Criar SUV");
 
         btnSedan.addActionListener(e -> criarSedan());
         btnHatch.addActionListener(e -> criarHatch());
+        btnSUV.addActionListener(e -> criarSUV());
 
         parte2.add(new JLabel("Montadora:"));
         parte2.add(montadoraCombo);
         parte2.add(btnSedan);
         parte2.add(btnHatch);
+        parte2.add(btnSUV);
 
         panel.add(parte1);
         panel.add(parte2);
@@ -107,6 +120,12 @@ public class Main extends JFrame {
         MontadoraFactory factory = getMontadoraSelecionada();
         Hatch hatch = factory.criarHatch();
         hatch.exibirConsumo();
+    }
+
+    private void criarSUV() {
+        MontadoraFactory factory = getMontadoraSelecionada();
+        SUV suv = factory.criarSUV();
+        suv.exibirTracao();
     }
 
     /** Redireciona System.out para a JTextArea, para exibir na GUI o que os métodos imprimem. */

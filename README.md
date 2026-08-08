@@ -3,6 +3,7 @@ projeto da criação de veículos utilizando Factory Method em Java com Swing
 
 # Alunos: 
 Bruno Aparecido Vivencio Rodrigues 
+<br>
 Igor Nogueira Pessoa 
 2° ADS AMS
 
